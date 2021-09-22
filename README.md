@@ -2,4 +2,4 @@
 
 ## Authors
 
-Bruno Stevaux, Jonathan Scott, Sarah Reid, William Lawrence
+[Bruno Stevaux](https://github.com/BrunoStevaux), Jonathan Scott, Sarah Reid, William Lawrence
