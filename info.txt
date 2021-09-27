@@ -1,0 +1,3 @@
+https://www.npmjs.com/package/node-tesseract-ocr
+https://discordjs.guide/
+https://discord.js.org/#/docs/main/stable/general/welcome

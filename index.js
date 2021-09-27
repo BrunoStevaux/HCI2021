@@ -38,9 +38,13 @@ const commands = [{
 
 client.on('ready', () => {
 	console.log(`Logged in as ${client.user.tag}!`);
+	client.user.setActivity(
+		"for new users!", {type: "WATCHING"}
+	)
 });
 
 client.on('interactionCreate', async interaction => {
+	console.log(interaction);
 	if (!interaction.isCommand()) return;
 
 	if (interaction.commandName === 'ping') {
