@@ -4,7 +4,11 @@ const token = process.env.token;
 const fs = require('fs');
 const { Client, Collection, Intents } = require('discord.js');
 
-const client = new Client({ intents: [Intents.FLAGS.GUILDS] });
+const client = new Client({ intents: [
+	Intents.FLAGS.GUILDS,
+	Intents.FLAGS.GUILD_MESSAGES,
+	Intents.FLAGS.DIRECT_MESSAGES,
+] });
 
 client.commands = new Collection();
 const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.js'));
@@ -32,6 +36,10 @@ client.on('interactionCreate', async interaction => {
 		console.error(error);
 		return interaction.reply({ content: 'There was an error while executing this command!', ephemeral: true });
 	}
+});
+
+client.on('messageCreate', async message => {
+	console.log(message.content);
 });
 
 client.login(token);
