@@ -2,6 +2,8 @@ require('dotenv').config();
 const token = process.env.token;
 
 const fs = require('fs');
+const tesseract = require("node-tesseract-ocr")
+
 const { Client, Collection, Intents } = require('discord.js');
 
 const client = new Client({ intents: [
@@ -16,16 +18,16 @@ const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('
 for (const file of commandFiles) {
 	const command = require(`./commands/${file}`);
 	client.commands.set(command.data.name, command);
-	// console.log(`${command.data.name} loaded.`);
 }
 
+
+
 client.once('ready', () => {
-	console.log('Ready!');
+	console.log(`Logged in as: ${client.user.tag} with ${commandFiles.length} commands.`);
 });
 
 client.on('interactionCreate', async interaction => {
 	if (!interaction.isCommand()) return;
-
 	const command = client.commands.get(interaction.commandName);
 
 	if (!command) return;
@@ -39,7 +41,27 @@ client.on('interactionCreate', async interaction => {
 });
 
 client.on('messageCreate', async message => {
-	console.log(message.content);
+	console.log(`#${message.channel.name} - ${message.author.tag}: ${message.content}`);
+	if (message.attachments.size > 0)
+	{
+		const config =
+		{
+			lang: "eng",
+			oem: 1,
+			psm: 3,
+		}
+
+
+
+		tesseract
+		.recognize(message.attachments.first().proxyURL, config)
+		.then((text) => {
+			console.log("Result:", text.split())
+		})
+		.catch((error) => {
+			// console.log(error.message);
+		})
+	}
 });
 
 client.login(token);

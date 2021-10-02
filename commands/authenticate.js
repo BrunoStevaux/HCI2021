@@ -7,9 +7,4 @@ module.exports = {
 	async execute(interaction) {
 		return interaction.reply('Pong!');
 	},
-}
-
-module.exports.help = {
-	name: "ping",
-	aliases: ["p"]
-}
+};
