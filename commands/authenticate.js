@@ -3,6 +3,8 @@ const { MessageActionRow, MessageButton, MessageEmbed } = require('discord.js');
 const tesseract = require("node-tesseract-ocr");
 const ocr = require('../util/tesseract.js');
 const embed = require('../util/embeds.js');
+const role = require('../util/role.js');
+const help = require('../util/button.js')
 
 module.exports = {
 	data: new SlashCommandBuilder()
@@ -11,8 +13,9 @@ module.exports = {
 	async execute(interaction) {
 
 		const emb = embed.intro(interaction);
+		const helpLink = help.helpLink();
 
-		return interaction.reply({fetchReply: true, embeds: [emb] })
+		return interaction.reply({fetchReply: true, components: [helpLink], embeds: [emb] })
 		.then(async () => {
 			const filter = m => m.content.includes('discord');
 			const collector = interaction.channel.createMessageCollector(filter, { time: 30000, dispose: true});
@@ -24,12 +27,13 @@ module.exports = {
 					let valid = await ocr.validate(collected);
 					if(valid){
 						const embReply = embed.valid(interaction);
-						// give role here
+						role.assign(interaction);
 						await interaction.editReply({embeds: [embReply]});
 					} else {
 						const embReply = embed.invalid(interaction);
-						await interaction.editReply({embeds: [embReply]});
+						await interaction.editReply({components: [helpLink], embeds: [embReply]});
 					}
+					collector.stop();
 				}
 			});
 			
@@ -43,6 +47,6 @@ module.exports = {
 
 
 module.exports.help = {
-	name: "ping",
-	aliases: ["p"]
+	name: "authenticate",
+	aliases: ["auth"]
 }
