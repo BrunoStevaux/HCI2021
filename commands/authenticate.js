@@ -1,7 +1,5 @@
 const { SlashCommandBuilder } = require('@discordjs/builders');
-const { MessageActionRow, MessageButton, MessageEmbed } = require('discord.js');
-const tesseract = require("node-tesseract-ocr");
-const ocr = require('../util/tesseract.js');
+const ocr = require('../util/vision.js');
 const embed = require('../util/embeds.js');
 const role = require('../util/role.js');
 const help = require('../util/button.js')
@@ -9,7 +7,7 @@ const help = require('../util/button.js')
 module.exports = {
 	data: new SlashCommandBuilder()
 		.setName('authenticate')
-		.setDescription('Authenticate yourself with the @Student role by providing your student ID.'),
+		.setDescription('Authenticate yourself with the @Acadia Student role by providing your student ID.'),
 	async execute(interaction) {
 
 		const emb = embed.intro(interaction);
@@ -18,7 +16,7 @@ module.exports = {
 		return interaction.reply({fetchReply: true, components: [helpLink], embeds: [emb] })
 		.then(async () => {
 			const filter = m => m.content.includes('discord');
-			const collector = interaction.channel.createMessageCollector(filter, { time: 30000, dispose: true});
+			const collector = interaction.channel.createMessageCollector(filter, { time: 120000, dispose: true});
 			console.log(`${interaction.commandName} - Listening for reply.`);
 			
 			collector.on('collect', async collected => {
@@ -27,6 +25,9 @@ module.exports = {
 					collector.stop();
 					collected.delete();
 					
+					const embSearch = embed.search(collected);
+					await interaction.editReply({embeds: [embSearch]});
+
 					let valid = await ocr.validate(collected);
 					if(valid){
 						const embReply = embed.valid(collected);

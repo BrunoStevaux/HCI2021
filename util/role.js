@@ -2,9 +2,8 @@ const { MessageEmbed, Interaction } = require('discord.js');
 
 module.exports = {
     assign: (interaction) => {
-        if(interaction.guild.roles.cache.find(role => role.name === 'Acadia Student'))
-            console.log("Found");
-        else {
+        if(!interaction.guild.roles.cache.find(role => role.name === 'Acadia Student'))
+        {
             interaction.guild.roles.create({
                 name: 'Acadia Student',
                 color: 'BLUE',
@@ -19,15 +18,4 @@ module.exports = {
         }
         return 1;
     },
-
-    remove: (interaction) => {
-
-        return 0;
-    },
-
-    error: (interaction) => {
-
-        return embed;
-    }
-
 }

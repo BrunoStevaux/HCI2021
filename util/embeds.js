@@ -9,6 +9,14 @@ module.exports = {
         return embed;
     },
 
+    search: (interaction) => {
+        const embed = new MessageEmbed()
+        .setTitle(`Student ID Authenticator`)
+        .setDescription(`${interaction.author} <a:Loading:900869383356817408> Searching...`)
+
+        return embed;
+    },
+
     valid: (interaction) => {
         const embed = new MessageEmbed()
         .setTitle(`Student ID Authenticator`)
