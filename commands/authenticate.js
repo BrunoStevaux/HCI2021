@@ -34,7 +34,7 @@ module.exports = {
 						await interaction.editReply({embeds: [embReply]});
 					} else {
 						const embReply = embed.invalid(collected);
-						await collected.editReply({components: [helpLink], embeds: [embReply]});
+						await interaction.editReply({components: [helpLink], embeds: [embReply]});
 					}
 				}
 			});
