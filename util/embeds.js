@@ -12,15 +12,16 @@ module.exports = {
     valid: (interaction) => {
         const embed = new MessageEmbed()
         .setTitle(`Student ID Authenticator`)
-        .setDescription(`${interaction.user} ✅ You now have the Students role.`)
-
+        .setDescription(`${interaction.author} ✅ You now have the Students role.`)
+        .setFooter(`Finished in ${Date.now() - interaction.createdTimestamp} ms`)
         return embed;
     },
 
     invalid: (interaction) => {
         const embed = new MessageEmbed()
         .setTitle(`Student ID Authenticator`)
-        .setDescription(`${interaction.user} ❌ I couldn't quite make out your ID. Try taking a better photo.`)
+        .setDescription(`${interaction.author} ❌ I couldn't quite make out your ID. Try taking a better photo.`)
+        .setFooter(`Finished in ${Date.now() - interaction.createdTimestamp} ms`)
 
         return embed;
     },
@@ -28,7 +29,8 @@ module.exports = {
     error: (interaction) => {
         const embed = new MessageEmbed()
         .setTitle(`Student ID Authenticator`)
-        .setDescription(`${interaction.user} ❓ Something went wrong.`)
+        .setDescription(`${interaction.author} ❓ Something went wrong.`)
+        .setFooter(`Finished in ${Date.now() - interaction.createdTimestamp} ms`)
 
         return embed;
     }

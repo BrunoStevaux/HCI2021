@@ -24,16 +24,18 @@ module.exports = {
 			collector.on('collect', async collected => {
 				if(collected.author.id == interaction.user.id && collected.attachments.size > 0)
 				{
+					collector.stop();
+					collected.delete();
+					
 					let valid = await ocr.validate(collected);
 					if(valid){
-						const embReply = embed.valid(interaction);
-						role.assign(interaction);
+						const embReply = embed.valid(collected);
+						role.assign(collected);
 						await interaction.editReply({embeds: [embReply]});
 					} else {
-						const embReply = embed.invalid(interaction);
-						await interaction.editReply({components: [helpLink], embeds: [embReply]});
+						const embReply = embed.invalid(collected);
+						await collected.editReply({components: [helpLink], embeds: [embReply]});
 					}
-					collector.stop();
 				}
 			});
 			
