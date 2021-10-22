@@ -1,5 +1,7 @@
 const tesseract = require("node-tesseract-ocr");
 
+// Tesseract OCR
+
 module.exports = {
     validate: async (collected) => { 
         try

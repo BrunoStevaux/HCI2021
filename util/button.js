@@ -1,6 +1,9 @@
 const { MessageActionRow, MessageButton } = require('discord.js');
 
+// Buttons that attach to interaction replies
+
 module.exports = {
+
     helpLink: (interaction) => {
         const row = new MessageActionRow()
         .addComponents(

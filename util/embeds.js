@@ -1,5 +1,7 @@
 const { MessageEmbed, Interaction } = require('discord.js');
 
+// Rich embeds used for displaying information
+
 module.exports = {
     intro: (interaction) => {
         const embed = new MessageEmbed()

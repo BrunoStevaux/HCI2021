@@ -1,5 +1,7 @@
 const vision = require('@google-cloud/vision');
 
+// Google Vision OCR. More reliable than Tesseract but has limited scans.
+
 module.exports = {
     validate: async (collected) => { 
         try
@@ -17,7 +19,6 @@ module.exports = {
             labels.forEach(label =>{
                 if((100000000 <= parseInt(label.description) && parseInt(label.description) < 200000000) && !isNaN(parseInt(label.description))) id_flag = true;
                 if(id_flag && label.description == "DOB:") dob_flag = true;
-                console.log(label.description);
             });
 
             if(dob_flag) return 1;

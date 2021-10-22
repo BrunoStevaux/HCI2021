@@ -1,4 +1,5 @@
-const { MessageEmbed, Interaction } = require('discord.js');
+
+// Assign role to users  
 
 module.exports = {
     assign: (interaction) => {
