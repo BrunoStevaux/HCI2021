@@ -19,4 +19,10 @@ module.exports = {
         }
         return 1;
     },
+
+    check: (interaction) => {
+        if(interaction.member.roles.cache.find(role => role.name === 'Acadia Student'))
+        return 1;
+    },
+
 }

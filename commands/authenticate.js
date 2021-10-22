@@ -14,6 +14,13 @@ module.exports = {
 		const emb = embed.intro(interaction);
 		const helpLink = help.helpLink();
 
+		// Check if user already has role.
+		if (role.check(interaction)){
+			const embDuplicate = embed.duplicate(interaction);
+			return interaction.reply({fetchReply: true, embeds: [embDuplicate] })
+
+		}
+
 		return interaction.reply({fetchReply: true, components: [helpLink], embeds: [emb] })
 		.then(async () => {
 			const filter = m => m.content.includes('discord');

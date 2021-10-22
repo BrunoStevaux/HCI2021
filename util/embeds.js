@@ -11,6 +11,14 @@ module.exports = {
         return embed;
     },
 
+    duplicate: (interaction) => {
+        const embed = new MessageEmbed()
+        .setTitle(`Student ID Authenticator`)
+        .setDescription(`${interaction.user} ✅ You already have the student role.`)
+        .setFooter(`Finished in ${Date.now() - interaction.createdTimestamp} ms`)
+        return embed;
+    },
+
     search: (interaction) => {
         const embed = new MessageEmbed()
         .setTitle(`Student ID Authenticator`)
