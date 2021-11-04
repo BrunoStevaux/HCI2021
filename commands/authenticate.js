@@ -3,7 +3,7 @@ const ocr = require('../util/vision.js');
 // const ocr = require('../util/tesseract.js');
 const embed = require('../util/embeds.js');
 const role = require('../util/role.js');
-const help = require('../util/button.js')
+const button = require('../util/button.js')
 
 module.exports = {
 	data: new SlashCommandBuilder()
@@ -12,7 +12,10 @@ module.exports = {
 	async execute(interaction) {
 
 		const emb = embed.intro(interaction);
-		const helpLink = help.helpLink();
+		const buttons = button.button();
+		button.helpLink(buttons);
+		button.consentLink(buttons);
+		button.feedbackLink(buttons);
 
 		// Check if user already has role.
 		if (role.check(interaction)){
@@ -21,7 +24,7 @@ module.exports = {
 
 		}
 
-		return interaction.reply({fetchReply: true, components: [helpLink], embeds: [emb] })
+		return interaction.reply({fetchReply: true, components: [buttons], embeds: [emb] })
 		.then(async () => {
 			const filter = m => m.content.includes('discord');
 
