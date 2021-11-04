@@ -4,9 +4,13 @@ const { MessageActionRow, MessageButton } = require('discord.js');
 
 module.exports = {
 
-    helpLink: (interaction) => {
-        const row = new MessageActionRow()
-        .addComponents(
+    button: (interaction) => {
+        const row = new MessageActionRow();    
+        return row;
+    },
+
+    helpLink: (row) => {
+        row.addComponents(
             new MessageButton()
                 .setLabel('How to take a photo')
                 .setStyle('LINK')
@@ -16,14 +20,26 @@ module.exports = {
         return row;
     },
 
-    remove: (interaction) => {
-
-        return 0;
+    consentLink: (row) => {
+        row.addComponents(
+            new MessageButton()
+                .setLabel('Consent Agreement')
+                .setStyle('LINK')
+                .setURL('https://docs.google.com/forms/d/19eQO72clzy2laYwQ2HALm9LmQ4RQn7m3v5LQKfsi21s'),
+        );
+    
+        return row;
     },
 
-    error: (interaction) => {
-
-        return embed;
+    feedbackLink: (row) => {
+        row.addComponents(
+            new MessageButton()
+                .setLabel('Feedback')
+                .setStyle('LINK')
+                .setURL('https://docs.google.com/forms/d/10KA8iJSBQ30hWnBbP7kaNpvKSb-qTgXI7vgsLCWNuBc'),
+        );
+    
+        return row;
     }
 
 }
