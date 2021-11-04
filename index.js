@@ -1,15 +1,14 @@
 require('dotenv').config();
-const token = process.env.token;
-
+const embed = require('./util/embeds.js');
+const { Client, Collection, Intents} = require('discord.js');
 const fs = require('fs');
 
-const { Client, Collection, Intents, MessageEmbed} = require('discord.js');
-const { captureRejections } = require('events');
-
+const token = process.env.token;
 const client = new Client({ intents: [
 	Intents.FLAGS.GUILDS,
 	Intents.FLAGS.GUILD_MESSAGES,
-	Intents.FLAGS.DIRECT_MESSAGES,
+	Intents.FLAGS.GUILD_MEMBERS,
+	Intents.FLAGS.DIRECT_MESSAGES
 ] });
 
 client.commands = new Collection();
@@ -19,8 +18,6 @@ for (const file of commandFiles) {
 	const command = require(`./commands/${file}`);
 	client.commands.set(command.data.name, command);
 }
-
-
 
 client.once('ready', () => {
 	console.log(`Logged in as: ${client.user.tag} with ${commandFiles.length} commands.`);
@@ -45,6 +42,16 @@ client.on('interactionCreate', async interaction => {
 client.on('messageCreate', async message => {
 	if (message.author.bot) return;
 	// console.log(`#${message.channel.name} - ${message.author.tag}: ${message.content || message.attachments.size + " images"}`);
+});
+
+client.on('guildMemberAdd', async member => {
+	if (member.user.bot) return;
+	const channel = member.guild.channels.cache.find(channel => channel.name == "welcome");
+	if(!channel) return;
+
+	let embWelcome = embed.welcome(member);
+	await channel.send({content: `Welcome ${member.user}`,
+	embeds: [embWelcome]});
 });
 
 client.login(token);
