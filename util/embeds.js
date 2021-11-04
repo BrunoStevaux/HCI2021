@@ -3,10 +3,22 @@ const { MessageEmbed, Interaction } = require('discord.js');
 // Rich embeds used for displaying information
 
 module.exports = {
+    welcome: (member) => {
+        const embed = new MessageEmbed()
+        .setTitle(`Student ID Authenticator`)
+        .setDescription(`${member.user} Type /Authenticate and follow the steps to get the student role.`)
+		.addField('Consent', 'Please note that by using this bot, you are agreeing to our consent agreement.')
+        .addField('\u200B', 'https://docs.google.com/forms/d/19eQO72clzy2laYwQ2HALm9LmQ4RQn7m3v5LQKfsi21s');
+
+        return embed;
+    },
+
     intro: (interaction) => {
         const embed = new MessageEmbed()
         .setTitle(`Student ID Authenticator`)
-        .setDescription(`Please provide a photo of your student ID.`);
+        .setDescription(`Please provide a photo of your student ID.`)
+        .addField('Consent', 'Please note that by using this bot, you are agreeing to our consent agreement.\n'
+        + 'If you do not consent, simply do not upload your ID.');
 
         return embed;
     },
@@ -39,6 +51,15 @@ module.exports = {
         const embed = new MessageEmbed()
         .setTitle(`Student ID Authenticator`)
         .setDescription(`${interaction.author} ❌ I couldn't quite make out your ID. Try taking a better photo.`)
+        .setFooter(`Finished in ${Date.now() - interaction.createdTimestamp} ms`)
+
+        return embed;
+    },
+
+    timeout: (interaction) => {
+        const embed = new MessageEmbed()
+        .setTitle(`Student ID Authenticator`)
+        .setDescription(`${interaction.author} ❌ I didn't receive any images from you.`)
         .setFooter(`Finished in ${Date.now() - interaction.createdTimestamp} ms`)
 
         return embed;
