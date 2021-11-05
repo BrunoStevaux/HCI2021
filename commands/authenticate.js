@@ -58,6 +58,8 @@ module.exports = {
 				}
 			});
 			
+			// If nothing is collected, then tell the user that nothing was received.
+
 			collector.on('end', collected => {
 				console.log(`authenticate - ${collected.size} replies received.`);
 			});

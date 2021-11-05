@@ -21,8 +21,7 @@ module.exports = {
     },
 
     check: (interaction) => {
-        if(interaction.member.roles.cache.find(role => role.name === 'Acadia Student'))
-        return 1;
+        if(interaction.member.roles.cache.find(role => role.name === 'Acadia Student')) return 1;
     },
 
 }
