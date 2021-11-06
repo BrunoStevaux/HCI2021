@@ -21,7 +21,6 @@ module.exports = {
 		if (role.check(interaction)){
 			const embDuplicate = embed.duplicate(interaction);
 			return interaction.reply({fetchReply: true, embeds: [embDuplicate] })
-
 		}
 
 		return interaction.reply({fetchReply: true, components: [buttons], embeds: [emb] })
@@ -29,7 +28,7 @@ module.exports = {
 			const filter = m => m.content.includes('discord');
 
 			// Listen for a response from the user
-			const collector = interaction.channel.createMessageCollector(filter, { time: 120000, dispose: true});
+			const collector = interaction.channel.createMessageCollector(filter, { time: 5000, dispose: true});
 			console.log(`${interaction.commandName} - Listening for reply.`);
 			
 			// Collector will collect literally every meessage. Including those from other users.
@@ -58,15 +57,12 @@ module.exports = {
 				}
 			});
 			
-			// If nothing is collected, then tell the user that nothing was received.
-
-			collector.on('end', collected => {
+			collector.on('end', async (collected, reason) => {
 				console.log(`authenticate - ${collected.size} replies received.`);
 			});
-                
-            })
-        }
-    },
+		})
+	}
+},
 
 
 module.exports.help = {

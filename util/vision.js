@@ -6,7 +6,7 @@ module.exports = {
     validate: async (collected) => { 
         try
         {
-            const clientOptions = {apiEndpoint: 'eu-vision.googleapis.com', keyFilename: './GoogleKey.json'};
+            const clientOptions = {apiEndpoint: 'us-vision.googleapis.com', keyFilename: './GoogleKey.json'};
             const client = new vision.ImageAnnotatorClient(clientOptions);
 
             let url = collected.attachments.first().proxyURL;
@@ -14,6 +14,11 @@ module.exports = {
             const [result] = await client.textDetection(url);
             const labels = result.textAnnotations;
 
+            // Extremely high tech security for authenticating. Lol.
+            // Simply check if their ID is between 100 and 200 million, then check that the next value is DOB. 
+            // This is enough to make sure they upload their ID. 
+
+            // TODO: Save each users "ID" so we can check later.
             let id_flag = false;
             let dob_flag = false;
             labels.forEach(label =>{
