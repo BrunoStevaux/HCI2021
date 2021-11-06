@@ -29,7 +29,7 @@ Work in progress
 ## Installation
 
 1. Install [NodeJS](https://nodejs.org/en/)
-2. Install [TesseractOCR](https://github.com/tesseract-ocr/tesseract) 
+2. Install [TesseractOCR](https://github.com/tesseract-ocr/tesseract)
 3. Create [Discord Developer Application](https://discord.com/developers/applications/)
 4. Create [Google Cloud](https://cloud.google.com/vision/) account
 5. Create two files: `.env` and `GoogleKey.json`
