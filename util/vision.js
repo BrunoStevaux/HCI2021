@@ -27,7 +27,10 @@ module.exports = {
             });
 
             if(dob_flag) return 1;
-            else return 0;
+            else {
+                console.log(labels);
+                return 0;
+            }
 
         } catch(e) {
             console.log(e);
