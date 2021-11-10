@@ -17,7 +17,7 @@ DiscordJS handles the interactions between users and the OCR engines while also 
 
 ## How to use
 
-Work in progress
+[Help](https://github.com/BrunoStevaux/HCI2021/blob/main/help.md)
 
 ## Requirements
 
