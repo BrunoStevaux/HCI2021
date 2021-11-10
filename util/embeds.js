@@ -17,6 +17,7 @@ module.exports = {
         const embed = new MessageEmbed()
         .setTitle(`Student ID Authenticator`)
         .setDescription(`Please provide a photo of your student ID. Simply send a photo after using this command.`)
+        .addField('What do to', 'Take a photo of your ID (check the help link). Then send the photo in this channel (We will automatically delete your photo).')
         .addField('Consent', 'Please note that by using this bot, you are agreeing to our consent agreement.\n'
         + 'If you do not consent, simply do not upload your ID.');
 
@@ -52,7 +53,7 @@ module.exports = {
     invalid: (interaction) => {
         const embed = new MessageEmbed()
         .setTitle(`Student ID Authenticator`)
-        .setDescription(`${interaction.author} ❌ I couldn't quite make out your ID. Try taking a better photo.`)
+        .setDescription(`${interaction.author} ❌ I couldn't quite make out your ID. Try taking a better photo. Use the \`/authenticate\` command to retry.`)
         .setFooter(`Finished in ${Date.now() - interaction.createdTimestamp} ms`)
         console.log(`Invalid (${interaction.author.username})`);
         return embed;
