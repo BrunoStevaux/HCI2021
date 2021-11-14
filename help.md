@@ -2,11 +2,18 @@
 
 ## Contents
 
-1. [Using the Bot](#using-the-bot)
-2. [Taking a Photo](#taking-a-photo)
-3. [Uploading a Photo](#uploading-a-photo)
-4. [Failed Authentication](#failed-authentication)
+1. [Video Tutorial](#example-video)
+2. [Using the Bot](#using-the-bot)
+3. [Taking a Photo](#taking-a-photo)
+4. [Uploading a Photo](#uploading-a-photo)
+5. [Failed Authentication](#failed-authentication)
 
+
+## Example Video
+
+[![example video](http://img.youtube.com/vi/pldGSQ1VxaU/0.jpg)](http://www.youtube.com/watch?v=pldGSQ1VxaU "Discord Authentication Bot Tutorial")
+
+Click the image above to view a quick video tutorial on youtube.
 
 ## Using The Bot
 
@@ -93,5 +100,5 @@ If the bot fails to authenticate you, don't worry! It is likely that the specifi
 
 If the problem persists, please contact
 
-@
-
+Bruno Stevaux
+-Email: 144894s@acadiau.ca
