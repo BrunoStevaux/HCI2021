@@ -25,18 +25,18 @@ module.exports = {
             new MessageButton()
                 .setLabel('Consent Agreement')
                 .setStyle('LINK')
-                .setURL('https://docs.google.com/forms/d/19eQO72clzy2laYwQ2HALm9LmQ4RQn7m3v5LQKfsi21s'),
-        );
-    
-        return row;
-    },
-
-    feedbackLink: (row) => {
-        row.addComponents(
-            new MessageButton()
-                .setLabel('Feedback')
-                .setStyle('LINK')
                 .setURL('https://docs.google.com/forms/d/10KA8iJSBQ30hWnBbP7kaNpvKSb-qTgXI7vgsLCWNuBc'),
+                );
+                
+                return row;
+            },
+            
+            feedbackLink: (row) => {
+                row.addComponents(
+                    new MessageButton()
+                    .setLabel('Feedback')
+                    .setStyle('LINK')
+                    .setURL('https://docs.google.com/forms/d/19eQO72clzy2laYwQ2HALm9LmQ4RQn7m3v5LQKfsi21s'),
         );
     
         return row;
