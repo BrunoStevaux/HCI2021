@@ -45,6 +45,7 @@ client.on('messageCreate', async message => {
 });
 
 client.on('guildMemberAdd', async member => {
+	console.log(`joined - ${member.user}`);
 	if (member.user.bot) return;
 	const channel = member.guild.channels.cache.find(channel => channel.name == "welcome");
 	if(!channel) return;
