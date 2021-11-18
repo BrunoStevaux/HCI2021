@@ -40,4 +40,4 @@ DiscordJS handles the interactions between users and the OCR engines while also 
 
 ### Authors
 
-[Bruno Stevaux](https://github.com/BrunoStevaux), [Jonathan Scott](https://github.com/VBJDAS), [Sarah Reid](https://github.com/Dshorty), William Lawrence
+[Bruno Stevaux](https://github.com/BrunoStevaux), [Jonathan Scott](https://github.com/VBJDAS), [Sarah Reid](https://github.com/Dshorty)
