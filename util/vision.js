@@ -28,7 +28,7 @@ module.exports = {
 
             if(dob_flag) return 1;
             else {
-                console.log(labels);
+                console.log(labels[0].description);
                 return 0;
             }
 
