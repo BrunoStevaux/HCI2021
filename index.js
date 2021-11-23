@@ -38,14 +38,14 @@ client.on('interactionCreate', async interaction => {
 	}
 });
 
-// This runs for every message. We fix this after.
-client.on('messageCreate', async message => {
-	if (message.author.bot) return;
-	// console.log(`#${message.channel.name} - ${message.author.tag}: ${message.content || message.attachments.size + " images"}`);
-});
+// // This runs for every message. We fix this after.
+// client.on('messageCreate', async message => {
+// 	if (message.author.bot) return;
+// 	// console.log(`#${message.channel.name} - ${message.author.tag}: ${message.content || message.attachments.size + " images"}`);
+// });
 
 client.on('guildMemberAdd', async member => {
-	console.log(`joined - ${member.user}`);
+	console.log(`joined - ${member.user.username}`);
 	if (member.user.bot) return;
 	const channel = member.guild.channels.cache.find(channel => channel.name == "welcome");
 	if(!channel) return;
